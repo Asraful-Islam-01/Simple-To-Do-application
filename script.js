@@ -4,29 +4,37 @@ const taskList = document.getElementById("task-list");
 
 addBtn.addEventListener("click", addTask);
 
+//allow pressing "Enter" to add a task
+input.addEventListener("keydown", (e) => {
+    if (e.key = "Enter") addTask();
+});
+
 function addTask() {
     const taskText = input.value.trim();
-    if (taskText === "") return;
+    if (!taskText) return;
 
     const li = document.createElement("li");
+    
+    const span = document.createElement("span");
+    span.textContent = taskText; // safe-no HTML injected
 
-    li.innerHTML = `
-    <span>${taskText}</span>
-    <button class="delete-btn">❌</button>
-  `;
+    const del = document.createElement("button");
+    del.type = "button" //accessible: avoid implicit form submit
+    del.className = "delete-btn";
+    del.textContent = "❌";
 
-  li.addEventListener("click", function(e) {
-    if (e.target.tagName === "SPAN") {
+    //toggle completed when clicking the text only 
+    span.addEventListener("click", () => {
         li.classList.toggle("completed");
-    }
-  });
+    });
 
-  li.querySelector(".delete-btn").addEventListener("click", function(e) {
-    e.stopPropagation();
-    li.remove();
-  });
+    //delete when clicking the button
+    del.addEventListener("click", (e) => {
+        e.stopPropagation(); //not strickly need now but harmless
+        li.remove();
+    });
 
-  taskList.appendChild(li);
-  input.value = "";
+    taskList.appendChild(li);
+    input.value = "";
+    input.focus();
 }
-

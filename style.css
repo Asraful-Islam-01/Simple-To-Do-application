@@ -13,27 +13,22 @@ body {
 }
 
 .todo-input {
-    display: flex;
-    gap: 10px;
-    
-}
-
-input {
     flex: 1;
     padding: 10px;
-    
 }
 
 button {
     padding: 10px 20px;
-    background-color: powderblue
+    background-color: powderblue;
+    border-radius: 5px;
+    border: none;
 }
 
 li {
     display: flex;
     justify-content: space-between;
     margin: 10px 0;
-    background: #eee;
+    background-color: #eee;
     padding: 10px;
     border-radius: 5px;
 }
@@ -41,4 +36,11 @@ li {
 li.completed {
     text-decoration: line-through;
     color: grey;
+}
+
+input {
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    margin-right: 10px;
 }
